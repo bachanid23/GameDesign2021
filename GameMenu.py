@@ -1,16 +1,19 @@
 #Deeya Bachani
 #Game Menu assignment
-print("My game menu")
-print()
-print("1--level1")
-print("2--level2")
-print("3--Print Scores")
-print("4--Exit Game")
-print("which one would you like to choose?")
+def menu():
+    print("My game menu")
+    print()
+    print("1--level1")
+    print("2--level2")
+    print("3--Print Scores")
+    print("4--Exit Game")
+    print("which one would you like to choose?")
 choice=input()
+x=1
+while x !=4:
 if choice=="1":
     print("Welcome to level 1")
-    print()
+    print() #this is a function call
     print("which one would you like to choose next?")
 choice=input()
 if choice=="2":

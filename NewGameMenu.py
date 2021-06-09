@@ -7,7 +7,8 @@ l4="* 1 - Level1 *"
 l5="* 2 - Level2 *"
 l6="* 3 - Scores *"
 l7="* 4 - Exit Game *"
-l8="**************************"
+l8="* 5 - Play with phrase *"
+l9="**************************"
 x=1 #global variable
 def menu():
     print(l1)
@@ -18,7 +19,8 @@ def menu():
     print(l6)
     print(l7)
     print(l8)
-    print("please enter your selection from 1 to 4")
+    print(l9)
+    print("please enter your selection from 1 to 5")
     inputNumber = input()
     x = int(inputNumber)
     return x
@@ -30,7 +32,7 @@ def score():
     print("* 2 - ???- 876 *")
     print("* 3 - ???- 745 *")
     print(l3)
-    print(l8)
+    print(l9)
 while x !=4: 
     x=menu()
     if(x==1): #if statement are selection or branching
@@ -41,6 +43,25 @@ while x !=4:
         print(b)
     if(x==2):
         print("Level 2 Chosen")
+        print("Please enter a phrase")
+        answer = input()
+        b=answer.capitalize()
+        print(b)
     if(x==3):
         score()
+        print("Please enter a phrase")
+        answer = input()
+        b=answer.swapcase()
+        print(b)
+    if(x==5):
+        print("play with phrase")
+        print("Please enter a phrase")
+        answer = input()
+        myTuple = ("Bob", "Joe", "Emma")
+        b=answer.join(myTuple)
+        print(b)
 print("Goodbye, Thank you for playing")
+print("Please enter a phrase")
+answer = input()
+b=answer.isdigit()
+print(b)

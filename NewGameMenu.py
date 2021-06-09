@@ -37,7 +37,8 @@ while x !=4:
         print("Level 1 Chosen")
         print("Please enter a phrase")
         answer = input()
-        answer = input.upper()
+        b=answer.upper()
+        print(b)
     if(x==2):
         print("Level 2 Chosen")
     if(x==3):

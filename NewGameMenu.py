@@ -24,7 +24,7 @@ def menu():
     print(l9)
     print(l10)
     print(l11)
-    print("please enter your selection from 1 to 5")
+    print("please enter your selection from 1 to 7")
     inputNumber = input()
     x = int(inputNumber)
     return x
@@ -38,8 +38,14 @@ def score():
     print(l3)
     print(l9)
 def pause():
-    print("Press N to continue or Y to stay")
-    input()
+    print("Do you want to play again?")
+    
+    answer1=input()
+    answer1=answer1.upper()
+    if "Y" in answer1:
+        return True
+    else:
+        return False
 while x !=7: 
     x=menu()
     if(x==1): #if statement are selection or branching
@@ -56,7 +62,7 @@ while x !=7:
                         continue
                 if (answer=="N"):
                         capitalize=False
-                pause()
+                covert= pause()
 
             
         
@@ -75,7 +81,7 @@ while x !=7:
                         continue
             if (answer=="N"):
                         upper=False
-            pause()
+            convert=pause()
 
     if(x==3):
         swapcase=True
@@ -91,7 +97,7 @@ while x !=7:
                         continue
             if (answer=="N"):
                         swapcase=False
-            pause()
+            convert=pause()
     if(x==4):
         count=True
         while count==True:
@@ -106,7 +112,7 @@ while x !=7:
                         count=True
             if (answer=="N"):
                         count=False
-            pause()
+            convert=pause()
     if(x==5):
         myTuple=True
         while myTuple==True:
@@ -123,7 +129,7 @@ while x !=7:
                         myTuple=True
             if (answer=="N"):
                         myTuple=False
-            pause()
+            convert=pause()
     if(x==6):
         title=True
         while title==True:
@@ -138,6 +144,7 @@ while x !=7:
                         continue
             if (answer=="N"):
                         title=False
+            convert=pause
 print("Goodbye, Thank you for playing")
 
 

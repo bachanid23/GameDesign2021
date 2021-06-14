@@ -8,11 +8,20 @@
 #play the game as long as the user has turns or has guessed the word
 
 import random
+from typing import Counter
 gamewords= ['python', 'java', 'trackpad', 'computer', 'keyboard','geeks','laptop','headphones','charger','mouse','software','hardware']
 #create menu
 answer=input("Do you want to guess the word?")
 name=input("What is your name?")
 answer=answer.upper()
+def updateWord(word):
+     for char in word:
+                if char in guesses:
+                    print(char, end='')
+                else:
+                    print("_", end = " ")
+
+
 while "Y" in answer:
     print("Good luck", name, "!")
     word=random.choice(gamewords)
@@ -20,7 +29,8 @@ while "Y" in answer:
     print(counter)
     turns=10 #should we consider controlling this number
     guesses= ""
-    while turns>0 and counter >0:
+    def updateWord(word):
+        while turns>0 and counter >0:
             for char in word:
                 if char in guesses:
                     print(char, end='')
@@ -28,14 +38,19 @@ while "Y" in answer:
                     print("_", end = " ")
             newGuess=input("\n\n Give me a letter ")
             characters=word.count(newGuess)
-            if newGuess not in word:
-                turns -=1
-                print("wrong! you have", turns, "guesses left")
-            else:
+            if newGuess in word:
+                newGuess=input("\n\n Give me a letter ")
+                characters=word.count(newGuess)
                 counter -=characters
                 print("nice guess")
-            guesses += newGuess
-               
-
-    answer=input("would you like to play again?").upper()
-print(name, " thank you for playing")
+                guesses += newGuess
+            else:
+                turns -=1
+                print("wrong! you have", turns, "guesses left")
+            updateWord(word)
+        if Counter == 0:
+            print("You guessed right!")
+        else:
+            print("Try again next time!")
+        answer=input("would you like to play again?").upper()
+    print(name, " thank you for playing")

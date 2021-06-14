@@ -11,7 +11,7 @@ time.sleep(2)
 print("there")
 def readFile():
     file=input("What is the name of the file?")
-    if os.path.exists(file):
+    if os.path.exists(file): #it is to make sure the file exists
         #It opens the file
         PEN=open(file, 'r')
         #prints the whole file
@@ -21,10 +21,17 @@ def readFile():
         print("The file does not exist! Thank you")
 
 fileName="DeeyaGame.txt"
-FILE=open(fileName,'w')
-FILE.write("***** THIS IS DEEYA'S FILE *****")
-FILE.close()
-time.sleep(1)
-FILE=open(fileName, 'r')
-print(FILE.read())
-FILE.close
+if os.path.exists(fileName):
+    print("sorry that file exists")
+else:
+    FILE=open(fileName,'w')
+    FILE.write("***** THIS IS DEEYA'S FILE *****")
+    FILE.close()
+    time.sleep(1)
+    FILE=open(fileName, 'r')
+    print(FILE.read())
+    FILE.close
+File=open("DeeyaGame.txt", 'w')
+newLine= "\n What ever    or else"
+File.write(newLine)
+File.close()

@@ -14,12 +14,14 @@ gamewords= ['python', 'java', 'trackpad', 'computer', 'keyboard','geeks','laptop
 answer=input("Do you want to guess the word?")
 name=input("What is your name?")
 answer=answer.upper()
+
+
 def updateWord(word):
      for char in word:
-                if char in guesses:
-                    print(char, end='')
-                else:
-                    print("_", end = " ")
+            if char in guesses:
+                print(char, end='')
+            else:
+                print("_", end = " ")
 
 
 while "Y" in answer:
@@ -27,30 +29,33 @@ while "Y" in answer:
     word=random.choice(gamewords)
     counter=len(word)
     print(counter)
+    print(word)
     turns=10 #should we consider controlling this number
     guesses= ""
-    def updateWord(word):
-        while turns>0 and counter >0:
-            for char in word:
-                if char in guesses:
-                    print(char, end='')
-                else:
-                    print("_", end = " ")
-            newGuess=input("\n\n Give me a letter ")
-            characters=word.count(newGuess)
-            if newGuess in word:
+    counter=len(word)
+    while turns>0 and counter >0:
+        for char in word:
+            if char in guesses:
+                print(char, end='')
+            else:
+                print("_", end = " ")
+        newGuess=input("\n\n Give me a letter ")
+        guesses +=newGuess
+        if newGuess in word:
                 newGuess=input("\n\n Give me a letter ")
                 characters=word.count(newGuess)
                 counter -=characters
                 print("nice guess")
                 guesses += newGuess
-            else:
+        else:
                 turns -=1
                 print("wrong! you have", turns, "guesses left")
-            updateWord(word)
-        if Counter == 0:
+        updateWord(word) 
+        print("wrong! you have", turns, "guesses left")
+        updateWord(word)
+    if Counter == 0:
             print("You guessed right!")
-        else:
+    else:
             print("Try again next time!")
-        answer=input("would you like to play again?").upper()
+    answer=input("would you like to play again?").upper()
     print(name, " thank you for playing")

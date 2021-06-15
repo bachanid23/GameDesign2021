@@ -8,14 +8,20 @@
 #play the game as long as the user has turns or has guessed the word
 
 import random
+import os
+import sys
+import time
+import datetime
 from typing import Counter
 gamewords= ['python', 'java', 'trackpad', 'computer', 'keyboard','geeks','laptop','headphones','charger','mouse','software','hardware']
-print("Word Game")
-print("1- Play")
-print("2- Scores")
-print("3- Exit")
+def menu():
+    print("Word Game")
+    print("1- Play")
+    print("2- Scores")
+    print("3- Exit")
+menu()
 choice= input()
-while "1" in choice:
+if "1" in choice:
     answer=input("Do you want to guess the word?")
     name=input("What is your name?")
     answer=answer.upper()
@@ -55,18 +61,33 @@ while "1" in choice:
         else:
             print("Try again next time!")
         answer=input("would you like to play again?").upper()
+    menu()
+    choice=input()
+    
 if "2" in choice:
-    import os
-    import sys
-    filename="WordGameScores.py"
-    FILE=open(filename, 'r')
-    print(FILE.read())
+    import time
+    fileName="WordGameHighScores.py"
+    FILE=open(fileName, 'w')
+    dt=datetime.datetime.now()
+    line= str(name)+ " had a score of " + str(score)
+    FILE.write(line)
+    FILE.write("\n")
     FILE.close()
-
+    time.sleep(.5)
+    FILE=open(fileName, 'r')
+    print(FILE.read())
+    input("Press enter when you would like to stop seeing your scores")
+    FILE.close()
+    menu()
+    choice=input()
 if "3" in choice:
-    import os
-    import sys
-    filename="WordGameExit.py"
-    FILE=open(filename, 'r')
-    print(FILE.read())
-    FILE.close()
+#I should add my score function
+    file="DeeyaGame.txt"
+    FILEW=open(file, 'a') #append
+    timeObj=datetime.datetime.now()
+    line = "\n"+str(timeObj.month)+"/"+str(timeObj.day)+"/"+str(timeObj.year)+"  "+name+"  "+str(score)
+    FILEW.write(line)
+    FILEW.close()
+    FILER=open(file, 'r')
+    print(FILER.read())
+    FILER.close()

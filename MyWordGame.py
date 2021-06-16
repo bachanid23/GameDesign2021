@@ -67,7 +67,7 @@ if "1" in choice:
 if "2" in choice:
     import time
     fileName="WordGameHighScores.py"
-    FILE=open(fileName, 'w')
+    FILE=open(fileName, 'a')
     dt=datetime.datetime.now()
     line= str(name)+ " had a score of " + str(score)
     FILE.write(line)

@@ -12,8 +12,8 @@ WIDTH=600
 HEIGHT= 400
 #create the objects
 
-bg=pygame.image.load("Images/backGr.png")
-some=pygame.image.load("pycache/lego.png")
+bg=pygame.image.load("Images/JOYSTICK (2).png")
+some=pygame.image.load("Images/background.png")
 white=[255, 255, 255]
 purple=[200,190,0]
 green=[50,25,255]

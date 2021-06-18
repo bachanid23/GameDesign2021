@@ -1,1 +1,1 @@
-deeya had a score of 2
+girish had a score of 4

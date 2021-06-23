@@ -12,8 +12,10 @@ pygame.display.set_caption("Hangman GAME!")
 WHITE = [255,255,255]  
 BLACK = [0,0,0]  
 
-confirm=True
-while confirm==True:
+click=False
+def main():
+
+
 
     # Word lists  
     gameWords= ['python','java','trackpad','computer','keyboard','geeks','laptop','headphones','charger','mouse','software','hardware']  
@@ -110,23 +112,74 @@ while confirm==True:
         updateScreen(turns, displayWord)  
 
         #check if we won or lost the game
-        won=True 
-        for letter in word:
-            if letter not in guesses:
-                won=False 
-                break 
-        if won:
-            dis_message("You Won!!!")
-            pygame.time.delay(5)
-            dis_message("Play Again?")
-            if pygame.key.get_pressed()[pygame.K_y]:
-                confirm==True
-            if pygame.key.get_pressed()[pygame.K_n]:
-                pygame.quit()
-                sys.exit()
-            break 
-        if turns == 6:
-            dis_message("You lost")
-            break   
-pygame.quit()  
-sys.exit()  
+        def game_Init(message):
+
+            test=True
+
+            while test:
+
+        
+
+            #Print message
+
+                screen.fill(WHITE)
+
+                text = WordFont.render(message, 1, BLACK)
+
+                screen.blit(text, (WIDTH/2 - text.get_width()/2, round(HEIGHT/3)))
+
+            
+
+                #rect1
+
+                rect1=pygame.Rect(150, 350, Wbox*2,Wbox*2)
+
+                pygame.draw.rect(screen, BLACK, rect1, width=1)
+
+                text = LetterFont.render("Yes", 1, BLACK)
+
+                screen.blit(text, (160 , 350))
+
+            
+
+                #rect 2
+
+                rect2=pygame.Rect(550, 350, Wbox*2,Wbox*2)
+
+                pygame.draw.rect(screen, BLACK, rect2, width=1)
+
+                text = LetterFont.render("No", 1, BLACK)
+
+                screen.blit(text, (560 , 350))
+
+            
+
+                #Check collide Point and rectangle
+
+                for event in pygame.event.get():
+
+                    if event.type == pygame.QUIT:
+
+                        pygame.quit()
+
+                        sys.exit() 
+
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+
+                        mx,my= pygame.mouse.get_pos()
+
+                        if rect1.collidepoint((mx,my)):
+
+                            #call main function
+
+                            main()
+
+                        if rect2.collidepoint((mx,my)):
+
+                            display_message("goodbye!!")
+
+                            pygame.quit()
+
+                            sys.exit()
+
+                pygame.display.update()  

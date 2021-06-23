@@ -1,11 +1,4 @@
-#Deeya Bachani
-#Create a Hangman version of the game:
-#Use images in a list Use fonts, render them
-
 import os, sys, time, pygame, random, math 
-
-
-
  
 pygame.init()  
 
@@ -15,21 +8,20 @@ HEIGHT = 500
 screen = pygame.display.set_mode((WIDTH,HEIGHT))  
 pygame.display.set_caption("Hangman GAME!")  
 
-    # Define Colors  
+# Define Colors  
 WHITE = [255,255,255]  
 BLACK = [0,0,0]  
 
 confirm=True
 while confirm==True:
 
-
-        # Word lists  
+    # Word lists  
     gameWords= ['python','java','trackpad','computer','keyboard','geeks','laptop','headphones','charger','mouse','software','hardware']  
 
-        
-        
+    
+    
 
-        # load images to list  
+    # load images to list  
     images = []  
     for i in range(7):  
         image=pygame.image.load("ImagesHM/hangman"+ str(i)+".png")  
@@ -38,28 +30,28 @@ while confirm==True:
         # pygame.display.update()  
         # pygame.time.delay(300)  
 
-        # Define Font objects  
+    # Define Font objects  
     TitleFont= pygame.font.SysFont("comicsans", 70)  #set the type of font and the size  
     WordFont=pygame.font.SysFont("comicsans", 50)  
     LetterFont=pygame.font.SysFont("comicsans", 40)
 
-        #Define letters for rectangular buttons
+    #Define letters for rectangular buttons
     A=65 
     Wbox=30 
     dist=10 
     letters=[]#an array of arrays  [[x,y, ltr, boolean]]
 
-        #DEfine where to start our drawing 26 letter, 13 letter in each line
+    #DEfine where to start our drawing 26 letter, 13 letter in each line
     startx= round((WIDTH - (Wbox + dist)*13) /2) #int function round
     starty= 350 
 
-        #load the letters into our double array
+    #load the letters into our double array
     for i in range(26):
         x=startx +dist*2+((Wbox +dist)*(i%13))
         y=starty+((i//13)*(dist + Wbox *2))
         letters.append([x,y,chr(A+i), True])
 
-        #Function to update the screen
+    #Function to update the screen
     def updateScreen(turns,displayWord):  
         screen.fill(WHITE)  
         title=TitleFont.render("Hangman",1, BLACK)  
@@ -92,7 +84,7 @@ while confirm==True:
         screen.blit(text, (200,200))
         pygame.display.update()
         pygame.time.delay(2000)
-        #always have a way to close your screen  
+    #always have a way to close your screen  
 
     word=random.choice(gameWords).upper()
     print(word)
@@ -117,33 +109,24 @@ while confirm==True:
         displayWord=updateWord(word, guesses)  
         updateScreen(turns, displayWord)  
 
-            #check if we won or lost the game
+        #check if we won or lost the game
         won=True 
         for letter in word:
             if letter not in guesses:
                 won=False 
                 break 
-            if won:
-                dis_message("You Won!!!")
-                pygame.time.delay(5)
-                dis_message("Play again?")
-                answer= input
-                if answer == "YES":
-                    confirm=True
-                if answer=="NO":
-                    confirm=False
-                    break
-                break 
-            if turns == 6:
-                    dis_message("You lost")
-                    pygame.time.delay(5)
-                    dis_message("Play again?")
-                    answer= input
-                    if answer == "YES":
-                        confirm=True
-                    if answer=="NO":
-                        confirm=False
-                        break
-                    break   
+        if won:
+            dis_message("You Won!!!")
+            pygame.time.delay(5)
+            dis_message("Play Again?")
+            if pygame.key.get_pressed()[pygame.K_y]:
+                confirm==True
+            if pygame.key.get_pressed()[pygame.K_n]:
+                pygame.quit()
+                sys.exit()
+            break 
+        if turns == 6:
+            dis_message("You lost")
+            break   
 pygame.quit()  
 sys.exit()  

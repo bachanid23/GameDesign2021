@@ -76,6 +76,13 @@ while check:
     screen.blit(bad,(770,473))
     screen.blit(bad,(339,573))
     screen.blit(bad,(624,274))
+    
+    score=0
+
+    #def checkCollision(howieImg, bad):
+    #    if pygame.sprite.collide_rect(howieImg, bad):
+    #        score=1
+    #checkCollision(howieImg, bad)
 
     pygame.display.flip()
     for event in pygame.event.get():

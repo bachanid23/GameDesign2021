@@ -35,6 +35,8 @@ b=0
 bg=pygame.image.load(os.path.join("Images/gameBackground.png")). convert() #MAKE MUCH BIGGER
 bg = pygame.transform.scale(bg, (1280, 720))
 
+bad=pygame.image.load("Images/badcharacter (1).jpg")
+
 
 
 clock=pygame.time.Clock()
@@ -64,6 +66,17 @@ while check:
 
     screen.blit(bg,(a,b))#create image on top of other one
     screen.blit(howieImg,(x,y))
+    screen.blit(bad,(30,50))
+    screen.blit(bad,(10,748))
+    screen.blit(bad,(100,275))
+    screen.blit(bad,(93,723))
+    screen.blit(bad,(28,294))
+    screen.blit(bad,(490,739))
+    screen.blit(bad,(512,563))
+    screen.blit(bad,(770,473))
+    screen.blit(bad,(339,573))
+    screen.blit(bad,(624,274))
+
     pygame.display.flip()
     for event in pygame.event.get():
         if event.type==pygame.QUIT:

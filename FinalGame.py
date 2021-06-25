@@ -38,10 +38,7 @@ bg = pygame.transform.scale(bg, (1280, 720))
 
 bad=pygame.image.load("Images/badcharacter (1).jpg")
 
-
-
 clock=pygame.time.Clock()
-
 
 
 check =True
@@ -49,21 +46,21 @@ while check:
     screen.fill(purple)
     speed=15
     clock.tick(speed)
+
     keyBoardKey=pygame.key.get_pressed() #checking what key is pressed
     if keyBoardKey[pygame.K_LEFT]: #moving left on x (-)
         howieImg=howieImg_left
         x-=speed
-        a-=speed
     if keyBoardKey[pygame.K_RIGHT]:
         howieImg=howieImg_right
         x +=speed
-        a +=speed
     if keyBoardKey[pygame.K_UP]: #moving left on x (-)
         howieImg=howieImg_front
         y-=speed
     if keyBoardKey[pygame.K_DOWN]:
         howieImg=howieImg_back
         y +=speed
+    
 
     rect1=pygame.Rect(10,748,33,31)
     pygame.draw.rect(screen, purple, rect1)
@@ -73,7 +70,7 @@ while check:
     pygame.draw.rect(screen, purple, rect3)
     rect4=pygame.Rect(28,294,33,31)
     pygame.draw.rect(screen, purple, rect4)
-    rect5=pygame.Rect(490,793,33,31)
+    rect5=pygame.Rect(490,739,33,31)
     pygame.draw.rect(screen, purple, rect5)
     rect6=pygame.Rect(512,563,33,31)
     pygame.draw.rect(screen, purple, rect6)
@@ -95,7 +92,7 @@ while check:
     screen.blit(bad,(100,275))
     screen.blit(bad,(93,723))
     screen.blit(bad,(28,294))
-    screen.blit(bad,(490,793))
+    screen.blit(bad,(490,739))
     screen.blit(bad,(512,563))
     screen.blit(bad,(770,473))
     screen.blit(bad,(339,573))
@@ -120,7 +117,7 @@ while check:
         pygame.draw.rect(screen, green, rect14)
     if  pygame.Rect.colliderect(mainRect, rect5) == True:
         score+=1
-        rect15=pygame.Rect(490,793,33,31)
+        rect15=pygame.Rect(490,739,33,31)
         pygame.draw.rect(screen, green, rect15)
     if  pygame.Rect.colliderect(mainRect, rect6) == True:
         score+=1
@@ -144,6 +141,9 @@ while check:
         pygame.draw.rect(screen, green, rect20)
 
     print(score)
+    
+
+
         
     
 
@@ -153,7 +153,8 @@ while check:
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
             check = False
-    pygame.quit()
+pygame.quit()
+clock.tick(60)
 
 
 

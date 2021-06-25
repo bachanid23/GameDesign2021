@@ -1,7 +1,8 @@
 #Deeya Bachani
 #Final Game Menu
 
-import os, sys, time, pygame, random, math
+import os, sys, time, pygame, random, math, datetime
+
 
  
 
@@ -139,8 +140,20 @@ def game_Init(message):
                 level3()
 
             if rect4.collidepoint((mx,my)):
-
-                display_message("Here are your scores:")
+                #display_message("Here are your scores: (in terminal)")
+                #import time
+                #fileName="FinalGameHighScores.py"
+                #FILE=open(fileName, 'a')
+                #dt=datetime.datetime.now()
+                #line= "had a score of " + str(score)
+                #FILE.write(line)
+                #FILE.write("\n")
+                #FILE.close()
+                #time.sleep(.5)
+                #FILE=open(fileName, 'r')
+                #print(FILE.read())
+                #input("Press enter when you would like to stop seeing your scores")
+                #FILE.close()
 
             if rect5.collidepoint((mx,my)):
 

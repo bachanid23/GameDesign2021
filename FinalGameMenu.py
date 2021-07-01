@@ -177,8 +177,10 @@ def display_message(message):
 
 def level1():
 
-        import FinalGamereal
-            
+    display_message("You are in level 1")
+    import Level1File
+    
+
 
 def level2():
 

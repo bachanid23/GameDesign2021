@@ -112,6 +112,15 @@ def game_Init(message):
 
     screen.blit(text, (60 , 550))
 
+
+    rect6menu=pygame.Rect(50, 650, Wbox*2,Wbox*2)
+
+    pygame.draw.rect(screen, green, rect6menu, width=1)
+
+    text = LetterFont.render("Instructions", 1, purple)
+
+    screen.blit(text, (60 , 650))
+
     
 
     
@@ -146,6 +155,10 @@ def game_Init(message):
             if rect4menu.collidepoint((mx,my)):
                 
                 scores()
+
+            if rect6menu.collidepoint((mx, my)):
+
+                instructions()
 
             if rect5menu.collidepoint((mx,my)):
 
@@ -185,29 +198,26 @@ def level1():
 def level2():
 
     display_message("You are in level 2")
+    import Level2File
 
 def level3():
 
     display_message("You are in level 3")
+    import Level3File
 
 def scores():
 
     display_message("score function")
     display_message("Here are your scores: (in terminal)")
     import time
-    fileName="FinalGameHighScores.py"
-    FILE=open(fileName, 'a')
-    dt=datetime.datetime.now()
-    line= "had a score of " + str(score)
-    FILE.write(line)
-    FILE.write("\n")
-    FILE.close()
-    time.sleep(.5)
+    fileName="WrittenScores.py"
     FILE=open(fileName, 'r')
     print(FILE.read())
     input("Press enter when you would like to stop seeing your scores")
     FILE.close()
 
+def instructions():
+    display_message("Use the arrow keys to hit the dragons. Everytime you hit a dragon, you will get a point. To get back to the menu, hit the white box in the bottom right corner")
 
  
 

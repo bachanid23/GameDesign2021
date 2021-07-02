@@ -44,7 +44,7 @@ clock=pygame.time.Clock()
 check =True
 while check:
     screen.fill(purple)
-    speed=20
+    speed=15
     clock.tick(speed)
 
     keyBoardKey=pygame.key.get_pressed() #checking what key is pressed
@@ -77,18 +77,11 @@ while check:
     pygame.draw.rect(screen, purple, rect6)
     rect7=pygame.Rect(770,473,33,31)
     pygame.draw.rect(screen, purple, rect7)
-    rect8=pygame.Rect(339,573,33,31)
-    pygame.draw.rect(screen, purple, rect8)
-    rect9=pygame.Rect(624,274,33,31)
-    pygame.draw.rect(screen, purple, rect9)
-    rect10=pygame.Rect(30,50,33,31)
-    pygame.draw.rect(screen, purple, rect10)
     mainRect=pygame.Rect(x,y,62,90)
     pygame.draw.rect(screen, purple, mainRect)
 
     screen.blit(bg,(a,b))#create image on top of other one
     screen.blit(howieImg,(x,y))
-    screen.blit(bad,(30,50))
     screen.blit(bad,(10,748))
     screen.blit(bad,(100,275))
     screen.blit(bad,(93,723))
@@ -96,8 +89,6 @@ while check:
     screen.blit(bad,(490,739))
     screen.blit(bad,(512,563))
     screen.blit(bad,(770,473))
-    screen.blit(bad,(339,573))
-    screen.blit(bad,(624,274))
 
 
     score=0
@@ -141,24 +132,6 @@ while check:
         score= score+1
         rect17=pygame.Rect(770,473,33,31)
         pygame.draw.rect(screen, green, rect17)
-        x+=50
-        y+=50
-    if  pygame.Rect.colliderect(mainRect, rect8) == True:
-        score= score+1
-        rect18=pygame.Rect(339,573,33,31)
-        pygame.draw.rect(screen, green, rect18)
-        x+=50
-        y+=50
-    if  pygame.Rect.colliderect(mainRect, rect9) == True:
-        score= score+1
-        rect19=pygame.Rect(624,274,33,31)
-        pygame.draw.rect(screen, green, rect19)
-        x+=50
-        y+=50
-    if  pygame.Rect.colliderect(mainRect, rect10) == True:
-        score= score+1
-        rect20=pygame.Rect(30,50,33,31)
-        pygame.draw.rect(screen, green, rect20)
         x+=50
         y+=50
 

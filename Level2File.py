@@ -4,6 +4,7 @@
 #K_LEFT=left arrow
 #K_RIGHT= right arrow
 
+#creating screen/basics
 import pygame, time, sys,os, datetime
 from pygame.locals import *
 os.system('cls')
@@ -19,7 +20,7 @@ HEIGHT=800
 white=[255, 255, 255]
 purple=[200,190,0]
 green=[0,255,0]
-#create an object to open window
+#create images/variables
 screen=pygame.display.set_mode((WIDTH,HEIGHT))
 
 howieImg_front=pygame.image.load("Images/howieImg_front.png").convert_alpha() #MAKE MUCH SMALLER
@@ -40,13 +41,13 @@ bad=pygame.image.load("Images/badcharacter (1).jpg")
 
 clock=pygame.time.Clock()
 
-
+#main game function
 check =True
 while check:
     screen.fill(purple)
     speed=15
     clock.tick(speed)
-
+#moves character
     keyBoardKey=pygame.key.get_pressed() #checking what key is pressed
     if keyBoardKey[pygame.K_LEFT]: #moving left on x (-)
         howieImg=howieImg_left
@@ -60,7 +61,7 @@ while check:
     if keyBoardKey[pygame.K_DOWN]:
         howieImg=howieImg_back
         y +=speed
-    
+   #creating the rects behind the images 
     endrect=pygame.Rect(750, 750, 50, 50)
     pygame.draw.rect(screen, white, endrect)
     rect1=pygame.Rect(10,748,33,31)
@@ -79,7 +80,7 @@ while check:
     pygame.draw.rect(screen, purple, rect7)
     mainRect=pygame.Rect(x,y,62,90)
     pygame.draw.rect(screen, purple, mainRect)
-
+#drawing the images
     screen.blit(bg,(a,b))#create image on top of other one
     screen.blit(howieImg,(x,y))
     screen.blit(bad,(10,748))
@@ -90,7 +91,7 @@ while check:
     screen.blit(bad,(512,563))
     screen.blit(bad,(770,473))
 
-
+#if rects collide, character moves away, rect turns green, add one point
     score=0
     if pygame.Rect.colliderect(mainRect, rect1) ==True:
         score= score+1
@@ -136,12 +137,13 @@ while check:
         y+=50
 
     if  pygame.Rect.colliderect(mainRect, endrect) == True:
-        import FinalGameMenu
+
+        import FinalGame #back to main menu
 
     pygame.display.update()    
 
     
-    
+  #add scores  
     fileName="FinalGameHighScores.py"
     FILE=open(fileName, 'a')
     dt=datetime.datetime.now()
@@ -150,39 +152,9 @@ while check:
     FILE.write("\n")
     FILE.close()
 
-    given_file= open('FinalGameHighScores.py', 'r')
-
-    lines= given_file.readlines()
-    sum=0
-
-    for line in lines:
-        for c in line:
-            if c.isdigit() == True:
-                sum= sum+ int(c)
-
-    given_file.close()
-
-    otherfile= open ("WritenScores", 'a')
-    number= str(sum)
-    otherfile.write(number)
-    otherfile.write("\n")
-    otherfile.close
-
-    #FILE=open(fileName, 'r')
-    #total=0
-    #for line in "FinalGameHighScores":
-    #    total= total + int(line)
-    #FILE.write(total)
-    #dt=datetime.datetime.now()
-    #FILE.close()
     
-
-
-        
     
-
-    
-
+#ends game
     pygame.display.flip()
     for event in pygame.event.get():
         if event.type==pygame.QUIT:

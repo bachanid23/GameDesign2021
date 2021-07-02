@@ -1,1 +1,1 @@
-hello
+score=20

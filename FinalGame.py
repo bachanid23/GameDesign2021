@@ -1,211 +1,273 @@
 #Deeya Bachani
-#if main character hits bad characters, it moves and gains one point
-#K_UP=up arrow
-#K_DOWN=down arrow
-#K_LEFT=left arrow
-#K_RIGHT= right arrow
+#Final Game
+
+import os, sys, time, pygame, random, math, datetime
 
 
+ 
 
-#starting to create screen
-import pygame, sys,os, datetime
-from pygame.locals import *
 os.system('cls')
-print(sys.path)
+
 pygame.init()
-pygame.time.delay(100)
-WIDTH=800 
-HEIGHT=800
 
+ 
+#making colors
+white = [255,255,255]
+BLUE=[64, 224, 208]
+YELLOW=[255, 215, 0]
+green=[127, 255, 0]
+BLACK = [0,0,0]
+ORANGE= [255,69,0]
+purple=[123, 104, 238]
 
+ 
+#making text
+TitleFont= pygame.font.SysFont("comicsans", 80)  
 
-white=[255, 255, 255]
-purple=[200,190,0]
-green=[0,255,0]
+WordFont=pygame.font.SysFont("helvetica", 75)
 
-screen=pygame.display.set_mode((WIDTH,HEIGHT))
+LetterFont=pygame.font.SysFont("helvetica",20)
 
-#added main character, changes image with movement
-howieImg_front=pygame.image.load("Images/howieImg_front.png").convert_alpha() 
-howieImg_back=pygame.image.load("Images/howieImg_back.png").convert_alpha()
-howieImg_right=pygame.image.load("Images/howieImg_right.png").convert_alpha()
-howieImg_left=pygame.image.load("Images/howieImg_left.png").convert_alpha()
+ 
+#making screen/basics of the game
+WIDTH = 800 
 
-howieImg= howieImg_front #variable that allows for changing image
+HEIGHT = 800
 
-#variables for future use
-x=20
-y=20
-a=0
-b=0
-bg=pygame.image.load(os.path.join("Images/gameBackground.png")). convert() #added background image
-bg = pygame.transform.scale(bg, (1280, 720)) #made to fit screen
+ 
 
-#bad character made
+screen = pygame.display.set_mode((WIDTH,HEIGHT))
 
-bad=pygame.image.load("Images/badcharacter (1).jpg")
+screen.fill(BLUE)
+
+pygame.display.set_caption("Final Game")
+
+ 
+
+Wbox = 40
+
+dist = 150
+
 
 clock=pygame.time.Clock()
 
-current_time=0
-button_press_time=0
 
-#main game function
-
-check =True
-while check:
-    screen.fill(purple)
-    speed=.2
-    current_time=pygame.time.get_ticks()
-
-#moving the main character
-
-    keyBoardKey=pygame.key.get_pressed() #checking what key is pressed
-    if keyBoardKey[pygame.K_LEFT]: #moving left on x (-)
-        howieImg=howieImg_left
-        x-=speed
-    if keyBoardKey[pygame.K_RIGHT]:
-        howieImg=howieImg_right
-        x +=speed
-    if keyBoardKey[pygame.K_UP]:
-        howieImg=howieImg_front
-        y-=speed
-    if keyBoardKey[pygame.K_DOWN]:
-        howieImg=howieImg_back
-        y +=speed
-
-
-#the rectangles that go behind all the images (for collide commands)
-    
-    rect1=pygame.Rect(10,748,33,31)
-    pygame.draw.rect(screen, purple, rect1)
-    rect2=pygame.Rect(100,275,33,31)
-    pygame.draw.rect(screen, purple, rect2)
-    rect3=pygame.Rect(93,723,33,31)
-    pygame.draw.rect(screen, purple, rect3)
-    rect4=pygame.Rect(28,294,33,31)
-    pygame.draw.rect(screen, purple, rect4)
-    rect5=pygame.Rect(490,739,33,31)
-    pygame.draw.rect(screen, purple, rect5)
-    rect6=pygame.Rect(512,563,33,31)
-    pygame.draw.rect(screen, purple, rect6)
-    rect7=pygame.Rect(770,473,33,31)
-    pygame.draw.rect(screen, purple, rect7)
-    rect8=pygame.Rect(339,573,33,31)
-    pygame.draw.rect(screen, purple, rect8)
-    rect9=pygame.Rect(624,274,33,31)
-    pygame.draw.rect(screen, purple, rect9)
-    rect10=pygame.Rect(30,50,33,31)
-    pygame.draw.rect(screen, purple, rect10)
-    mainRect=pygame.Rect(x,y,62,90)
-    pygame.draw.rect(screen, purple, mainRect)
-    
-#display all the images used in program
-    
-    screen.blit(bg,(a,b))#create image on top of other one
-    screen.blit(howieImg,(x,y))
-    screen.blit(bad,(30,50))
-    screen.blit(bad,(10,748))
-    screen.blit(bad,(100,275))
-    screen.blit(bad,(93,723))
-    screen.blit(bad,(28,294))
-    screen.blit(bad,(490,739))
-    screen.blit(bad,(512,563))
-    screen.blit(bad,(770,473))
-    screen.blit(bad,(339,573))
-    screen.blit(bad,(624,274))
-    
-
-#stops the main character from going off the side of the screen 
 
  
-#what will happen when rectangles collide. add score, rect turns green, main character moves away
+#main game menu code
+def game_Init(message):  
 
-    score=0
-    if pygame.Rect.colliderect(mainRect, rect1) ==True:
-        score+=1
-        rect11=pygame.Rect(10,748,33,31)
-        pygame.draw.rect(screen, green, rect11)
-        x+=50
-        y+=50
-    if  pygame.Rect.colliderect(mainRect, rect2) == True:
-        score+=1
-        rect12=pygame.Rect(100,275,33,31)
-        pygame.draw.rect(screen, green, rect12)
-        x+=50
-        y+=50
-    if  pygame.Rect.colliderect(mainRect, rect3) == True:
-        score+=1
-        rect13=pygame.Rect(93,723,33,31)
-        pygame.draw.rect(screen, green, rect13)
-        x+=50
-        y+=50
-    if  pygame.Rect.colliderect(mainRect, rect4) == True:
-        score+=1
-        rect14=pygame.Rect(28,294,33,31)
-        pygame.draw.rect(screen, green, rect14)
-        x+=50
-        y+=50
-    if  pygame.Rect.colliderect(mainRect, rect5) == True:
-        score+=1
-        rect15=pygame.Rect(490,739,33,31)
-        pygame.draw.rect(screen, green, rect15)
-        x+=50
-        y+=50
-    if  pygame.Rect.colliderect(mainRect, rect6) == True:
-        score+=1
-        rect16=pygame.Rect(512,563,33,31)
-        pygame.draw.rect(screen, green, rect16)
-        x+=50
-        y+=50
-    if  pygame.Rect.colliderect(mainRect, rect7) == True:
-        score+=1
-        rect17=pygame.Rect(770,473,33,31)
-        pygame.draw.rect(screen, green, rect17)
-        x+=50
-        y+=50
-    if  pygame.Rect.colliderect(mainRect, rect8) == True:
-        score+=1
-        rect18=pygame.Rect(339,573,33,31)
-        pygame.draw.rect(screen, green, rect18)
-        x+=50
-        y+=50
-    if  pygame.Rect.colliderect(mainRect, rect9) == True:
-        score+=1
-        rect19=pygame.Rect(624,274,33,31)
-        pygame.draw.rect(screen, green, rect19)
-        x+=50
-        y+=50
-    if  pygame.Rect.colliderect(mainRect, rect10) == True:
-        score+=1
-        rect20=pygame.Rect(30,50,33,31)
-        pygame.draw.rect(screen, green, rect20)
-        x+=50
-        y+=50
-    print(score)
-    
+    screen.fill(YELLOW)
 
-#shows score
+    text = WordFont.render(message, 1, BLUE)
+
+    screen.blit(text,(50,50))
+
+ 
+#making rectangles for menu screen
+    rect1menu=pygame.Rect(50, 150, Wbox*2,Wbox*2)
+
+    pygame.draw.rect(screen, green, rect1menu, width=1)
+
+    text = LetterFont.render("1", 1, purple)
+
+    screen.blit(text, (60 , 150))
+
+ 
+
+    rect2menu=pygame.Rect(50, 250, Wbox*2,Wbox*2)
+
+    pygame.draw.rect(screen, green, rect2menu, width=1)
+
+    text = LetterFont.render("2", 1, purple)
+
+    screen.blit(text, (60 , 250))
 
     
 
+    rect3menu=pygame.Rect(50, 350, Wbox*2,Wbox*2)
 
-        
+    pygame.draw.rect(screen, green, rect3menu, width=1)
+
+    text = LetterFont.render("3", 1, purple)
+
+    screen.blit(text, (60 , 350))
+
+
+
+    rect4menu=pygame.Rect(50, 450, Wbox*2,Wbox*2)
+
+    pygame.draw.rect(screen, green, rect4menu, width=1)
+
+    text = LetterFont.render("Scores", 1, purple)
+
+    screen.blit(text, (60 , 450))
+
+
+    rect5menu=pygame.Rect(50, 550, Wbox*2,Wbox*2)
+
+    pygame.draw.rect(screen, green, rect5menu, width=1)
+
+    text = LetterFont.render("Exit", 1, purple)
+
+    screen.blit(text, (60 , 550))
+
+
+    rect6menu=pygame.Rect(50, 650, Wbox*2,Wbox*2)
+
+    pygame.draw.rect(screen, green, rect6menu, width=1)
+
+    text = LetterFont.render("Instructions", 1, purple)
+
+    screen.blit(text, (60 , 650))
+
     
 
     
-#end of program
-    pygame.display.flip()
+#instructions for what to do when each rectangle is clicked
     for event in pygame.event.get():
-        if event.type==pygame.QUIT:
-            check = False
-pygame.quit()
-clock.tick(60)
+
+        if event.type == pygame.QUIT:
+
+            pygame.quit()
+
+            sys.exit() 
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+
+            mx,my= pygame.mouse.get_pos()
+
+            if rect1menu.collidepoint((mx,my)):
+
+                #call main function
+
+                level1()
+            
+
+            if rect2menu.collidepoint((mx,my)):
+
+                level2()
+
+            if rect3menu.collidepoint((mx,my)):
+
+                level3()
+
+            if rect4menu.collidepoint((mx,my)):
+                
+                scores()
+
+            if rect6menu.collidepoint((mx, my)):
+
+                instructions()
+
+            if rect5menu.collidepoint((mx,my)):
+
+                display_message("Goodbye!")
+
+                pygame.quit()
+
+                sys.exit()
+
+        pygame.display.update() 
+
+ 
+#function for any text
+def display_message(message):
+
+    pygame.time.delay(500)
+
+    screen.fill(ORANGE)
+
+    text = WordFont.render(message, 1, purple)
+
+    screen.blit(text, (WIDTH/2 - text.get_width()/2, HEIGHT/2 - text.get_height()/2))
+
+    pygame.display.update()
+
+    pygame.time.delay(2000)
+
+ 
+#if a level is clicked, that level file is imported
+def level1():
+
+    display_message("You are in level 1")
+    import Level1File
+    
 
 
+def level2():
 
+    display_message("You are in level 2")
+    import Level2File
 
+def level3():
 
+    display_message("You are in level 3")
+    import Level3File
+#scores are found in the FinalGameHighScores.py file. Then transfered to Written scores to be concise.
+def scores():
 
+    display_message("score function")
+    display_message("Scores are in the terminal")
+    import time
+    print("TOP SCORES:")
+    print("1. 192")
+    print("2. 84")
+    print("3. 79")
+    print("your score=")
+    given_file= open('FinalGameHighScores.py', 'r')
 
-     
+    lines= given_file.readlines()
+    sum=0
+
+    for line in lines:
+        for c in line:
+            if c.isdigit() == True:
+                sum= sum+ int(c)
+    print(sum)
+    given_file.close()
+    
+    otherfile= open ("WrittenScores.py", 'w')
+    number= str(sum)
+    otherfile.write("score=" +number)
+    otherfile.write("\n")
+    otherfile.close
+    open("FinalGameHighScores.py", 'w').close()
+    fileName="WrittenScores.py"
+    FILE=open(fileName, 'r')
+    print(FILE.read())
+    FILE.close()
+    game_Init("Final Game Menu")
+
+#The instructions are written with this function
+def instructions():
+    screen.fill(purple)
+    text = TitleFont.render("Instructions:", 1, BLACK)
+    screen.blit(text, (100,100))
+    step1 = LetterFont.render("1.Use the arrow keys to move", 1, BLACK)
+    screen.blit(step1, (100,200))
+    step2 = LetterFont.render("2.Everytime you hit a dragon, you get a point", 1, BLACK)
+    screen.blit(step2, (100, 300))
+    step3 = LetterFont.render("3.Hit the white box in the bottom right corner", 1, BLACK)
+    screen.blit(step3, (100, 400))
+    step4 = LetterFont.render("with your character to get back to the menu", 1, BLACK)
+    screen.blit(step4, (100, 450))
+    step5 = LetterFont.render("ENJOY THE GAME!", 1, BLACK)
+    screen.blit(step5, (100,550))
+    pygame.time.delay(2000)
+    pygame.display.update
+
+ 
+#playing the game
+while True:
+
+    game_Init("Final Game")
+
+    for event in pygame.event.get():
+
+        if event.type == pygame.QUIT:
+
+            pygame.quit()
+
+            sys.exit()
+

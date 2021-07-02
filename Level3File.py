@@ -109,7 +109,6 @@ while check:
         y+=50
 
     if  pygame.Rect.colliderect(mainRect, endrect) == True:
-
         import FinalGameMenu
 
     pygame.display.update()    
